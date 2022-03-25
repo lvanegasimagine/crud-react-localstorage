@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import {FaSyncAlt} from 'react-icons/fa';
 
 const EditPostForm = ({ editingPost, updatePost }) => {
   const [updatePostData, setUpdatePostData] = useState({
@@ -48,8 +49,8 @@ const EditPostForm = ({ editingPost, updatePost }) => {
           <label htmlFor="body">Mensaje</label>
           <input type="text" className="form-control" name="body" value={body} onChange={handleChange} />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Save
+        <button type="submit" className="btn btn-info">
+          <FaSyncAlt /> &nbsp;  Update 
         </button>
       </form>
     </Fragment>

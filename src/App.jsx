@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import AddPostForm from "./AddPostForm";
+import AddPostForm from "./components/AddPostForm";
 import EditPostForm from "./components/EditPostForm";
-import ListPost from "./ListPost";
+import ListPost from "./components/ListPost";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   let postIniciales = JSON.parse(localStorage.getItem("posts"));
@@ -31,6 +32,7 @@ function App() {
   }, [post]);
 
   const crearPost = (postData) => {
+    postData.id = uuidv4();
     setPost([...post, postData]);
   };
 
@@ -41,6 +43,7 @@ function App() {
 
   const editPost = (post) => {
     setEditing(true);
+    console.log(post);
     setEditingPost({
       id: post.id,
       title: post.title,

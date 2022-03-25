@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Posts from "./components/Posts";
+import Posts from "./Posts";
 
 const ListPost = ({ post, eliminarPost, editPost }) => {
   return (

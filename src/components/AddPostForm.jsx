@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { v4 as uuid } from "uuid";
-
+import {FaSave} from 'react-icons/fa'
 const AddPostForm = ({ crearPost }) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -27,7 +27,6 @@ const AddPostForm = ({ crearPost }) => {
     }
 
     setError(false);
-    formData.id = uuid();
     crearPost(formData);
     setFormData({
       title: "",
@@ -50,7 +49,8 @@ const AddPostForm = ({ crearPost }) => {
           <input type="text" className="form-control" name="body" value={body} onChange={handleChange} />
         </div>
         <button type="submit" className="btn btn-primary">
-          Save
+        <FaSave />
+           &nbsp; Save
         </button>
       </form>
     </Fragment>
