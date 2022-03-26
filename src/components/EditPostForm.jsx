@@ -1,22 +1,16 @@
 import React, { Fragment, useState } from "react";
-import {FaSyncAlt} from 'react-icons/fa';
+import { FaSyncAlt } from "react-icons/fa";
+import { useForm } from "../hooks/useForm";
 
 const EditPostForm = ({ editingPost, updatePost }) => {
-  const [updatePostData, setUpdatePostData] = useState({
+  const [values, handleChange, reset] = useForm({
     id: editingPost.id,
     title: editingPost.title,
     body: editingPost.body,
   });
 
   const [error, setError] = useState(false);
-  const { title, body } = updatePostData;
-
-  const handleChange = (e) => {
-    setUpdatePostData({
-      ...updatePostData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const { title, body } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,11 +21,8 @@ const EditPostForm = ({ editingPost, updatePost }) => {
     }
 
     setError(false);
-    updatePost(editingPost.id, updatePostData);
-    setUpdatePostData({
-      title: "",
-      body: "",
-    });
+    updatePost(editingPost.id, values);
+    reset();
   };
 
   return (
@@ -49,7 +40,7 @@ const EditPostForm = ({ editingPost, updatePost }) => {
           <input type="text" className="form-control" name="body" value={body} onChange={handleChange} />
         </div>
         <button type="submit" className="btn btn-info">
-          <FaSyncAlt /> &nbsp;  Update 
+          <FaSyncAlt /> &nbsp; Update
         </button>
       </form>
     </Fragment>
