@@ -1,22 +1,16 @@
 import React, { Fragment, useState } from "react";
-import { v4 as uuid } from "uuid";
-import {FaSave} from 'react-icons/fa'
+import { FaSave } from "react-icons/fa";
+import { useForm } from "../hooks/useForm";
+
 const AddPostForm = ({ crearPost }) => {
-  const [formData, setFormData] = useState({
+  const [values, handleChange, reset] = useForm({
     title: "",
     body: "",
   });
 
   const [error, setError] = useState(false);
 
-  const { title, body } = formData;
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const { title, body } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,13 +19,9 @@ const AddPostForm = ({ crearPost }) => {
       setError(true);
       return;
     }
-
     setError(false);
-    crearPost(formData);
-    setFormData({
-      title: "",
-      body: "",
-    });
+    crearPost(values);
+    reset();
   };
 
   return (
@@ -49,8 +39,8 @@ const AddPostForm = ({ crearPost }) => {
           <input type="text" className="form-control" name="body" value={body} onChange={handleChange} />
         </div>
         <button type="submit" className="btn btn-primary">
-        <FaSave />
-           &nbsp; Save
+          <FaSave />
+          &nbsp; Save
         </button>
       </form>
     </Fragment>

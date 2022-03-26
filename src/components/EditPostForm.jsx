@@ -27,7 +27,6 @@ const EditPostForm = ({ editingPost, updatePost }) => {
     }
 
     setError(false);
-    // console.log(editingPost.id);
     updatePost(editingPost.id, updatePostData);
     setUpdatePostData({
       title: "",
