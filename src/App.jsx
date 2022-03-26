@@ -5,9 +5,9 @@ import ListPost from "./components/ListPost";
 import { v4 as uuidv4 } from "uuid";
 import Navbar from "./shared/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomeScreen from "./pages/HomeScreen";
+import HomeScreen from "./pages/Home/HomeScreen";
 import Posts from "./components/Posts";
-import PostScreen from "./pages/PostScreen";
+import PostScreen from "./pages/Post/PostScreen";
 
 function App() {
   let postIniciales = JSON.parse(localStorage.getItem("posts"));
