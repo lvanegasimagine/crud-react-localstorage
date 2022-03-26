@@ -7,10 +7,10 @@ export const useForm = (initialState = {}) => {
     setValues(initialState);
   };
 
-  const handleChange = ({target}) => {
+  const handleChange = ({ target }) => {
     setValues({
       ...values,
-      [target.name]: target.value
+      [target.name]: target.value,
     });
   };
 

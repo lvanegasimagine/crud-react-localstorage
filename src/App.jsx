@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import AddPostForm from "./components/AddPostForm";
 import EditPostForm from "./components/EditPostForm";
 import ListPost from "./components/ListPost";
 import { v4 as uuidv4 } from "uuid";
+import Navbar from "./shared/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomeScreen from "./pages/HomeScreen";
+import Posts from "./components/Posts";
+import PostScreen from "./pages/PostScreen";
 
 function App() {
   let postIniciales = JSON.parse(localStorage.getItem("posts"));
@@ -17,8 +22,8 @@ function App() {
   // Valor a editar
   const [editingPost, setEditingPost] = useState({
     id: null,
-    title: '',
-    body: '',
+    title: "",
+    body: "",
   });
 
   useEffect(() => {
@@ -55,14 +60,25 @@ function App() {
     setEditing(false);
     console.log(data);
     console.log(id);
-    setPost( post.map (p => (p.id === id ? data: p)))
+    setPost(post.map((p) => (p.id === id ? data : p)));
     console.log(post);
-  }
+  };
   return (
-    <div className="container mt-5">
-      <header className="App-header">{editing ? <EditPostForm editingPost={editingPost} updatePost={updatePost} /> : <AddPostForm crearPost={crearPost} />}</header>
-      <ListPost post={post} eliminarPost={eliminarPost} editPost={editPost} />
-    </div>
+    <Fragment>
+      <Router>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<HomeScreen />}></Route>
+          <Route path="/post" element={<PostScreen />}></Route>
+        </Routes>
+      </Router>
+      {/* <div className="container mt-5">
+        <header className="App-header">
+          {editing ? <EditPostForm editingPost={editingPost} updatePost={updatePost} /> : <AddPostForm crearPost={crearPost} />}
+        </header>
+        <ListPost post={post} eliminarPost={eliminarPost} editPost={editPost} />
+      </div> */}
+    </Fragment>
   );
 }
 
